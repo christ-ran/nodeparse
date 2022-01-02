@@ -1,6 +1,6 @@
 # nodeparse 
 
-![nodeparse-image](./images/nodeparse.PNG)
+![nodeparse-image](./images/nodeparse.png)
 
 [![npm version](https://img.shields.io/npm/v/nodeparse.svg?style=flat-square)](https://www.npmjs.org/package/nodeparse)
 [![install size](https://packagephobia.now.sh/badge?p=nodeparse)](https://packagephobia.now.sh/result?p=nodeparse)
