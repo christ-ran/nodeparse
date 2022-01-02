@@ -11,11 +11,7 @@ A lightweight, vanilla replacement for Express framework when parsing the HTTP b
 ## Table of Contents
 
 	- [Installing](#installing)
-	- [Using](#using)
-	-	[Parsing url params](#params)
-	- [Parsing url queries](#queries)
-	- [Parsing http data](#data)
-	- [Built-in method](#builtin)
+
 
 ## Installing
 
