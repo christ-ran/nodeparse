@@ -1,6 +1,6 @@
 {
   "name": "nodeparse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight, vanilla replacement for Express framework when parsing the body's data or parsing the URL params and queries when using with NodeJS.",
   "main": "index.js",
   "keywords": [
