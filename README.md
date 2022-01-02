@@ -8,11 +8,6 @@
 
 A lightweight, vanilla replacement for Express framework when parsing the HTTP body's data or parsing the URL parameters and queries with NodeJS.
 
-## Table of Contents
-
-	- [Installing](#installing)
-
-
 ## Installing
 
 Using npm:
