@@ -5,7 +5,7 @@
  * http library.
  * */
 const http = require("http");
-const NodeParse = require("../lib/core/NodeParse");
+const NodeParse = require("nodeparse");
 
 /* Declare variables */
 const port = process.env.PORT || 8080;
