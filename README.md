@@ -24,10 +24,11 @@ You first need to import the module.
 const NodeParse = require("nodeparse");
 ```
 
-Create a basic NodeJS http server, create nodeparse instance and `init()` it.
+Create a basic NodeJS http server, create nodeparse instance and use `init()` method.
 ```js
 const http = require("http");
 const NodeParse = require("nodeparse");
+const port = process.env.PORT || 8080;
 
 const server = http.createServer(function (req, res) {
 	const nodeparse = new NodeParse(req, res);
@@ -42,7 +43,7 @@ server.listen(port, function (error) {
 
 ## Parsing url params
 
-In order to parse the URL params. You need to make sure it inside the `if (nodeparse.params)` because of the `favicon.ico` return `undefined`.
+Using `nodeparse.params` to get an array of params.
 
 ```js
 const server = http.createServer(function (req, res) {
@@ -50,21 +51,19 @@ const server = http.createServer(function (req, res) {
 	nodeparse.init();
 
 	if (req.method === "GET") {
-		if(nodeparse.params) {
-			console.log(nodeparse.params);	// => This will return an array of params.
-			/*
-				https://localhost:3000/api/products
-				
-				return => ["api", "products"]
-			*/
-		}
+		console.log(nodeparse.params);
+		/*
+			https://localhost:3000/api/products
+			
+			output: ["api", "products"]
+		*/
 	}
 });
 ```
 
 ## Parsing url queries
 
-For url queries.
+Using `nodeparse.queries` to get an object of queries.
 
 ```js
 const server = http.createServer(function (req, res) {
@@ -72,13 +71,11 @@ const server = http.createServer(function (req, res) {
 	nodeparse.init();
 	
 	if (req.method === "GET") {
-		if (nodeparse.params) {
-			console.log(nodeparse.queries); // => This will return an object of queries.
-		}
+		console.log(nodeparse.queries);
 		/*
-			https://localhost:3000/api/products?name=banana&size=xl
+			https://localhost:8080/api/products?name=banana&size=xl
 
-			return => {"name": "banana", "size": "xl"}
+			output: {"name": "banana", "size": "xl"}
 		*/
 	}
 });
@@ -86,33 +83,17 @@ const server = http.createServer(function (req, res) {
 
 ## Parsing the http data
 
-Because `nodeparse.data` is a promise return from `req.on()` so you need to `await` with `nodeparse.data` inside an `async` function.
+Because `nodeparse.data` is a promise return from `req.on()` so you need to `await` with `nodeparse.init()` inside an `async` function.
 
 ```js
 const server = http.createServer(async function (req, res) {
 	const nodeparse = new NodeParse(req, res);
-	nodeparse.init();
+	await nodeparse.init();
 
 	if (req.method === "POST") {
-		console.log(await nodeparse.data);
+		console.log(nodeparse.data);
 	}
 });
-```
-
-## Built-in method
-
-Nodeparse has some built-in method, in stead of using:
-
-```js
-if (req.url === "/api/products" && req.method === "GET") {
-	funtionToBeTriggered(res);
-}
-```
-
-You can use this:
-
-```js
-nodeparse.isRoute("api/products", "GET", functionToBeTriggered);
 ```
 
 ## Credits

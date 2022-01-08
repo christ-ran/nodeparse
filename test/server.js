@@ -5,19 +5,25 @@
  * http library.
  * */
 const http = require("http");
-const NodeParse = require("nodeparse");
+const NodeParse = require("../lib/core/NodeParse");
 
 /* Declare variables */
 const port = process.env.PORT || 8080;
 
 
 /* Create server */
-const server = http.createServer(function (req, res) {
+const server = http.createServer(async function (req, res) {
 	const nodeparse = new NodeParse(req);		
-	nodeparse.parseParams();
+	await nodeparse.init();
 	if (req.method === "GET") {
 		console.log("params ", nodeparse.params);
 		console.log("queries ", nodeparse.queries);
+		res.write("OK!");
+		res.end();
+	}
+
+	if (req.method === "POST") {
+		console.log("params: ", nodeparse.data);
 		res.write("OK!");
 		res.end();
 	}
